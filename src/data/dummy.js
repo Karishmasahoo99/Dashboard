@@ -2132,7 +2132,7 @@ export const ordersData = [
     Status: 'pending',
     StatusBg: '#FB9678',
     ProductImage:
-      product6,
+      "https://s3.envato.com/files/243936173/B0007143.jpg"
   },
   {
     OrderID: 345653,
