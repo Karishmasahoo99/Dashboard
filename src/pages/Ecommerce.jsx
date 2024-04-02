@@ -11,7 +11,7 @@ const Ecommerce = () => {
   return (
     <div className='mt-12'>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
-        <div className='bg-black dark:text-gray-200 dark:bg-secondary-dark-bg rounded-xl h-44 w-full lg:w-80 p-8 pt-9 m-3
+        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-xl h-44 w-full lg:w-80 p-8 pt-9 m-3
         bg-cover bg-center'>
           <div className='flex justify-between items-center'>
             <div>
