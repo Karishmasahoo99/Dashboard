@@ -1,7 +1,7 @@
 import React from 'react'
-//import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Tooltip, Category, HiloOpenCloseSeries,  DataLabel } from '@syncfusion/ej2-react-charts';
-import { MapsComponent, LayersDirective, LayerDirective } from '@syncfusion/ej2-react-maps';
-import { ColorMappingPrimaryXAxis, ColorMappingPrimaryYAxis, rangeColorMapping } from '../../data/dummy';
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, ColumnSeries, Category, Tooltip, Legend, RangeColorSettingsDirective, RangeColorSettingDirective } from '@syncfusion/ej2-react-charts';
+
+import { ColorMappingPrimaryXAxis, ColorMappingPrimaryYAxis, rangeColorMapping, colorMappingData } from '../../data/dummy';
 import { Header } from '../../components';
 
 import { useStateContext } from '../../contexts/ContextProvider';
@@ -10,8 +10,8 @@ const ColorMapping = () => {
   const {currentMode}=useStateContext();
   return (
     <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-      <Header category="Bar" title="Inflation Rate in Percentage"/>
-      <MapsComponent
+      <Header category="Bar" title="Usa climate"/>
+      <ChartComponent
       id="colored-charts"
       height="420px"
       primaryXAxis={ColorMappingPrimaryXAxis}
@@ -20,13 +20,26 @@ const ColorMapping = () => {
       //dataSource={barChartData}
       tooltip={{enable:true}}
       background={currentMode==='Dark'?'#33373E':'#fff'}
-      legendSettings={{background:'white'}}
+      legendSettings={{mode:'Range',background:'white'}}
       >
-        
-        <LayersDirective>
-          {rangeColorMapping.map((item, index)=> <LayerDirective key={index} {...item}/>)}
-        </LayersDirective>
-      </MapsComponent>
+        <Inject services={[ ColumnSeries, Legend, Tooltip, Category]}/>
+        <SeriesCollectionDirective>
+            <SeriesDirective
+              dataSource={colorMappingData[0]}
+              name="USA"
+              xName="x"
+              yName="y"
+              type="Column"
+              cornerRadius={{
+                topLeft: 10,
+                topRight: 10,
+              }}
+            />
+        </SeriesCollectionDirective>
+        <RangeColorSettingsDirective>
+          {rangeColorMapping.map((item, index)=> <RangeColorSettingDirective key={index} {...item}/>)}
+        </RangeColorSettingsDirective>
+      </ChartComponent>
     </div>
   )
 }
